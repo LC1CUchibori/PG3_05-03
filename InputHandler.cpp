@@ -1,22 +1,18 @@
-#include "InputHandler.h"
+﻿#include "InputHandler.h"
+#include <Novice.h>
 
-ICommand* InputHandler::HandleInput() {
-	if (Novice::CheckHitKey(DIK_D)) {
-		return pressKeyD_;
-	}
-	else if (Novice::CheckHitKey(DIK_A)) {
-		return pressKeyA_;
-	}
-
-	return nullptr;
+// コンストラクタ
+InputHandler::InputHandler(Command* left, Command* right)
+	: LeftCommand_(left), RightCommand_(right) {
 }
 
-void InputHandler::AssignMoveLeft2PressKeyA() {
-	ICommand* command = new MoveLeftCommand();
-	this->pressKeyA_ = command;
-}
-
-void InputHandler::AssignMoveRight2PressKeyD() {
-	ICommand* command = new MoveRightCommand();
-	this->pressKeyD_ = command;
+// 入力処理
+Command* InputHandler::HandleInput(const char* keys) {
+	if (keys[DIK_A]) {
+		return LeftCommand_; 
+	}
+	else if (keys[DIK_D]) {
+		return RightCommand_; 
+	}
+	return nullptr; 
 }

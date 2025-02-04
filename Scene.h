@@ -1,20 +1,24 @@
-#pragma once
+﻿#ifndef SCENE_H
+#define SCENE_H
+
+#include "IGameObject.h"
+#include "ICommand.h"
 #include "InputHandler.h"
-#include "lCommand.h"
-#include "Player.h"
 
-class Scene
-{
+// シーンを管理するクラス
+class Scene {
 public:
-	Scene();
+	Scene();       // コンストラクタ
+	~Scene();      // デストラクタ
 
-	void Init();
-	void Update();
-	void Draw();
+	void Update(const char* keys); // 更新処理
+	void Draw() const;             // 描画処理
 
 private:
-	InputHandler* inputHandler_ = nullptr;
-	ICommand* iCommand_ = nullptr;
-	Player* player_;
+	GameObject* player_;           // プレイヤーオブジェクト
+	MoveLeftCommand* moveLeft_;    // 左移動コマンド
+	MoveRightCommand* moveRight_;  // 右移動コマンド
+	InputHandler* inputHandler_;   // 入力ハンドラー
 };
 
+#endif // SCENE_H

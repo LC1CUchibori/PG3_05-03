@@ -1,27 +1,36 @@
-#include "Scene.h"
+﻿#include "Scene.h"
 
-Scene::Scene() {}
+// コンストラクタ
+Scene::Scene() {
+	// ゲームオブジェクトの初期化
+	player_ = new GameObject(640.0f, 360.0f, 5.0f);
 
-void Scene::Init(){
-	inputHandler_ = new /*��*/;
+	// コマンドの初期化
+	moveLeft_ = new MoveLeftCommand();
+	moveRight_ = new MoveRightCommand();
 
-	inputHandler_->/*�������O�̊֐����̂P��*/();
-	inputHandler_->/*�������O�̊֐����̂Q��*/();
-
-	player_ = new Player();
-	player_->Init();
+	// 入力ハンドラーの初期化
+	inputHandler_ = new InputHandler(moveLeft_, moveRight_);
 }
 
-void Scene::Update(){
-	iCommand_ = inputHandler_->HandleInput();
+// デストラクタ
+Scene::~Scene() {
+	delete player_;
+	delete moveLeft_;
+	delete moveRight_;
+	delete inputHandler_;
+}
 
-	if (/*��iCommand��Null�łȂ����*/_) {
-		iCommand_->/*�R�}���h�����s��*/(*player_);
+// 更新処理
+void Scene::Update(const char* keys) {
+	// 入力に応じたコマンドを取得
+	Command* command = inputHandler_->HandleInput(keys);
+	if (command) {
+		command->Execute(*player_); // コマンドを実行してオブジェクトを更新
 	}
-
-	player_->Update();
 }
 
-void Scene::Draw(){
-	player_->Draw();
+// 描画処理
+void Scene::Draw() const {
+	player_->Draw(); // プレイヤーオブジェクトを描画
 }

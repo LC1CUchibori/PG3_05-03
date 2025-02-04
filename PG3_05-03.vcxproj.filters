@@ -38,16 +38,19 @@
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\StringUtility.cpp">
       <Filter>KamataEngine\Source</Filter>
     </ClCompile>
-    <ClCompile Include="lCommand.cpp">
-      <Filter>KamataEngine</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>KamataEngine</Filter>
     </ClCompile>
-    <ClCompile Include="InputHandler.cpp">
+    <ClCompile Include="Scene.cpp">
       <Filter>KamataEngine</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
+    <ClCompile Include="ICommand.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="IGameObject.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandler.cpp">
       <Filter>KamataEngine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -123,9 +126,14 @@
     <ClInclude Include="C:\KamataEngine\DirectXGame\base\StringUtility.h">
       <Filter>KamataEngine\Include</Filter>
     </ClInclude>
-    <ClInclude Include="lCommand.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="ICommand.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="IGameObject.h" />
+    <ClInclude Include="InputHandler.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="PG3_05-03.rc" />
   </ItemGroup>
 </Project>

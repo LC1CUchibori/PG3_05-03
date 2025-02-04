@@ -1,27 +1,23 @@
-#include "Scene.h"
 #include <Novice.h>
+#include "Scene.h"
 
-const char kWindowTitle[] = "PG3コマンドパターン";
+// ウィンドウタイトル
+const char kWindowTitle[] = "LE2D_04_ウチボリ_ユウタ_タイトル";
 
-const int kWindowWidth = 1280; // ウィンドウの横幅
-const int kWindowHeight = 720; // ウィンドウの縦幅
+// キー入力結果を受け取る箱
+char keys[256] = { 0 };
+char preKeys[256] = { 0 };
 
-// Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	// ライブラリの初期化
-	Novice::Initialize(kWindowTitle, kWindowWidth, kWindowHeight);
+	Novice::Initialize(kWindowTitle, 1280, 720);
 
-	// キー入力結果を受け取る箱
-	char keys[256] = { 0 };
-	char preKeys[256] = { 0 };
-
-	Scene* scene = new Scene();
-	scene->Init();
+	// シーンの初期化
+	Scene scene;
 
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
-
 		// フレームの開始
 		Novice::BeginFrame();
 
@@ -29,25 +25,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		memcpy(preKeys, keys, 256);
 		Novice::GetHitKeyStateAll(keys);
 
-		///
-		/// ↓更新処理ここから
-		///
+		/// 更新処理
+		scene.Update(keys);
 
-		scene->Update();
-
-		///
-		/// ↑更新処理ここまで
-		///
-
-		///
-		/// ↓描画処理ここから
-		///
-
-		scene->Draw();
-
-		///
-		/// ↑描画処理ここまで
-		///
+		/// 描画処理
+		scene.Draw();
 
 		// フレームの終了
 		Novice::EndFrame();

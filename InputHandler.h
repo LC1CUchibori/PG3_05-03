@@ -1,17 +1,17 @@
-#pragma once
-#include "lCommand.h"
-#include <Novice.h>
+﻿#ifndef INPUTHANDLER_H
+#define INPUTHANDLER_H
 
-class InputHandler
-{
-public:
-	ICommand* HandleInput();
+#include "ICommand.h"
 
-	void AssignMoveLeft2PressKeyA();
-	void AssignMoveRight2PressKeyD();
-
+// 入力処理を管理するクラス
+class InputHandler {
 private:
-	ICommand* pressKeyD_;
-	ICommand* pressKeyA_;
+	Command* LeftCommand_;
+	Command* RightCommand_;
+
+public:
+	InputHandler(Command* left, Command* right);
+	Command* HandleInput(const char* keys); 
 };
 
+#endif

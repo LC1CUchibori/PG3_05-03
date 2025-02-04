@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "Vector2.h"
 #include <Novice.h>
 
@@ -11,7 +11,7 @@ public:
 	void Update();
 	void Draw();
 
-	//ƒƒ“ƒoŠÖ”
+	//ãƒ¡ãƒ³ãƒé–¢æ•°
 	void MoveRight();
 	void MoveLeft();
 
